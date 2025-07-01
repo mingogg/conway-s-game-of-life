@@ -13,7 +13,7 @@ canvas.width = square;
 const ctx = canvas.getContext("2d");
 
 // This now creates the cells, rows and cols
-const cellSize = 10;
+const cellSize = 16;
 const rows = square / cellSize;
 const cols = square / cellSize;
 
@@ -32,6 +32,7 @@ function on_canvas_click(ev) {
 
 // Time to create the grid
 let grid = [];
+
 for (let i = 0; i < rows; i++) {
   let row = [];
   for (let j = 0; j < cols; j++) {
@@ -46,7 +47,7 @@ function drawGrid() {
       const x = col * cellSize;
       const y = row * cellSize;
 
-      ctx.fillStyle = grid[row][col] === 1 ? "green" : "black";
+      ctx.fillStyle = grid[row][col] === 1 ? "rgb(0, 255, 0)" : "black";
       ctx.fillRect(x, y, cellSize, cellSize);
 
       ctx.strokeStyle = "grey";
@@ -95,6 +96,7 @@ function countNeighbors(row, col) {
       neighbors++;
     }
   }
+
   return neighbors;
 }
 
@@ -135,5 +137,5 @@ function mainLoop() {
 
 drawGrid();
 button.addEventListener("click", () => {
-  setInterval(mainLoop, 500);
+  setInterval(mainLoop, 200);
 });
